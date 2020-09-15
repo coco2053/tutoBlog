@@ -43,6 +43,5 @@ $link = $router->url('admin_posts');
     </tbody>
 </table>
 <div class="d-flex justify-content-between my-4">
-    <?= $pagination->previousLink($link) ?>
-    <?= $pagination->nextLink($link) ?>
+    <?= $pagination->pagination($link) ?>
 </div>

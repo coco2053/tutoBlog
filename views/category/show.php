@@ -32,6 +32,5 @@ $link = $router->url('category', ['id' => $category->getId(), 'slug' => $categor
 </div>
 
 <div class="d-flex justify-content-between my-4">
-    <?= $pagination->previousLink($link) ?>
-    <?= $pagination->nextLink($link) ?>
+    <?= $pagination->pagination($link) ?>
 </div>

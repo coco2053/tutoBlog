@@ -65,6 +65,41 @@ HTML;
 HTML;
     }
 
+    public function pagination(string $link): ?string
+    {
+        $currentPage = $this->getCurrentPage();
+        $pages = $this->getPages();
+        if($pages <= 1) {
+            return '';
+        }
+        if($currentPage <= 1) {
+            $linkPrev = '#';
+            $statusPrev = ' disabled';
+        } else {
+            $linkPrev = $link ."?page=" . ($currentPage -1);
+            $statusPrev = '';
+        }
+        if($currentPage >= $pages) {
+            $linkNext = '#';
+            $statusNext = ' disabled';
+        } else {
+            $linkNext = $link ."?page=" . ($currentPage +1);
+            $statusNext = '';
+        }
+        $pageLinks = '';
+        for($i=1; $i<=$pages; $i++) {
+            $status = ($i == $currentPage) ? ' active' : '';
+            $pageLinks .= '<li class="page-item' .$status.'"><a class="page-link" href="' . $link . '?page='. $i .'">'.$i.'</a></li>';
+        }
+        return <<<HTML
+                 <ul class="pagination">
+                  <li class="page-item{$statusPrev}"><a class="page-link" href="{$linkPrev}">Précedent</a></li>
+                    {$pageLinks}
+                  <li class="page-item{$statusNext}"><a class="page-link" href="{$linkNext}">Suivant</a></li>
+                </ul> 
+HTML;
+    }
+
     private function getCurrentPage(): ?int
     {
         return URL::getPositiveInt('page', 1);

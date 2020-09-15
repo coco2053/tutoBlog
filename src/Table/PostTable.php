@@ -3,8 +3,6 @@ namespace App\Table;
 
 use App\PaginatedQuery;
 use App\Entity\Post;
-use \PDO;
-use phpDocumentor\Reflection\Types\Void_;
 
 final class PostTable extends Table
 {
